@@ -5,7 +5,7 @@
 */
 
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View,Image, TouchableOpacity} from 'react-native';
+import {Platform, StyleSheet, Text, View,Image, TouchableOpacity, ActivityIndicator} from 'react-native';
 
 
 export default class Home extends Component {
@@ -20,11 +20,19 @@ export default class Home extends Component {
 
         <Image source={require('../img/logo.png')}
                style={styles.imgLogo}/>
-        <TouchableOpacity onPress={this.films}>
+        {/* <TouchableOpacity onPress={this.films}>
           <Image source={require('../img/loadind.gif')}
                 style={styles.gifLoading}/>
           <Text style={styles.textoLoading}>Loading...</Text>
-          </TouchableOpacity>
+        </TouchableOpacity> */}
+
+        <TouchableOpacity onPress={this.films}>
+          <View style={styles.loadindArea}>
+            <ActivityIndicator size={60} color="#ffe81f"/>
+          </View>
+          <Text style={styles.textoLoading}>Loading...</Text>
+        </TouchableOpacity>
+
       </View>
     );
   }
@@ -51,10 +59,16 @@ const styles = StyleSheet.create({
     height: 191,
     marginTop: 39
   },
-  gifLoading:{
-    width: 55,
-    height: 55,
-    marginTop: 110
+  loadindArea:{
+    width: 50,
+    height: 50,
+    marginTop: 120,
+    marginBottom:10
+  },
+  loadindTamanho:{
+    width: 80,
+    height:80,
+    backgroundColor:'blue'
   },
   textoLoading:{
     width: 53,
