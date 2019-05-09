@@ -39,7 +39,7 @@ export default class Character extends Component {
     return (
       <View style={styles.container}>  
         <View style={styles.header}>
-            <Text style={styles.textHeader}>Star Wars</Text>
+            <Text style={styles.textHeader}>STAR WARS</Text>
         </View>
 
         <View style={styles.content}>
@@ -68,14 +68,14 @@ export default class Character extends Component {
           
           <View style={styles.navItems}>
             <Icon name = "ios-person"  size={20} color={'#ffe81f'}/>
-            <Text style={{color:'#ffe81f'}}>Character</Text>
+            <Text style={{color:'#ffe81f', fontFamily:'Exo Regular'}}>Character</Text>
           </View>
           
 
           <TouchableOpacity onPress={this.films}>
             <View style={styles.navItems}>
               <Icon name="ios-videocam" size={20} color={'#e5e5e5'}/>
-              <Text style={{color:'#e5e5e5'}}>Movies</Text>
+              <Text style={{color:'#e5e5e5', fontFamily:'Exo Regular'}}>Movies</Text>
             </View>
           </TouchableOpacity>
         </View>
@@ -100,8 +100,9 @@ const styles = StyleSheet.create({
   },
   textHeader:{
       color:'#ffe81f',
-      fontSize:20,
-      paddingTop:35
+      fontSize:23,
+      paddingTop:35,
+      fontFamily: 'Exo Regular'
   },
   content:{
       width:360,
@@ -111,7 +112,8 @@ const styles = StyleSheet.create({
   },
   titleContent:{
       color:'#fff',
-      fontSize:20,
+      fontSize:28,
+      fontFamily:'Exo Regular'
   },
   character:{
     width:320,
@@ -136,7 +138,8 @@ const styles = StyleSheet.create({
     color:'#fff',
     padding:5,
     fontSize:15,
-    textAlign:'center'
+    textAlign:'center',
+    fontFamily:'Exo Regular'
   },
   nav:{
     width:360,

@@ -88,7 +88,8 @@ const styles = StyleSheet.create({
   },  
   textHeader:{
       color:'#ffe81f',
-      fontSize:20,
+      fontSize:23,
+      fontFamily:'Exo Regular'
   },
   content:{
       width:360,
@@ -129,7 +130,8 @@ const styles = StyleSheet.create({
   },
   infoFilmsDetailText:{
       color:'#fff',
-      textAlign:'justify'
+      textAlign:'justify',
+      fontFamily:'Exo Regular'
   },
   espaco:{
     marginRight:35,

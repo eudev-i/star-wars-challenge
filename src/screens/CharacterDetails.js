@@ -91,7 +91,8 @@ const styles = StyleSheet.create({
   },  
   textHeader:{
       color:'#ffe81f',
-      fontSize:20,
+      fontSize:23,
+      fontFamily:'Exo Regular'
   },
   content:{
       width:360,
@@ -148,7 +149,8 @@ const styles = StyleSheet.create({
   textTitleFimls:{
     color:'#ffe81f',
     marginLeft:10,
-    fontSize:20,          
+    fontSize:20,    
+    fontFamily:'Exo Regular'      
   },
   nameFimls:{
       width:320,
@@ -158,7 +160,8 @@ const styles = StyleSheet.create({
       marginBottom:10
   },
   textNameFimls:{
-      color:'#fff'
+      color:'#fff',
+      fontFamily:'Exo Regular'
   },
   espaco:{
     marginRight:35,
