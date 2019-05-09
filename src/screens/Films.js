@@ -65,15 +65,15 @@ export default class Films extends Component {
 
           <TouchableOpacity onPress={this.character}>
             <View style={styles.navItems}>
-              <Icon name = "ios-person"  size={20} color={'#ffe81f'}/>
-              <Text style={styles.textNav}>Character</Text>
+              <Icon name = "ios-person"  size={20} color={'#e5e5e5'}/>
+              <Text style={{color:'#e5e5e5'}}>Character</Text>
             </View>
           </TouchableOpacity>
 
           
           <View style={styles.navItems}>
             <Icon name="ios-videocam" size={20} color={'#ffe81f'}/>
-            <Text style={styles.textNav}>Movies</Text>
+            <Text style={{color:'#ffe81f'}}>Movies</Text>
           </View>
         </View>
 
@@ -98,7 +98,8 @@ const styles = StyleSheet.create({
   textHeader:{
       color:'#ffe81f',
       fontSize:20,
-      paddingTop:35
+      paddingTop:35,
+      fontFamily:'Exo Medium'
   },
   content:{
       width:360,
@@ -151,8 +152,5 @@ const styles = StyleSheet.create({
   imgNav:{
     width:10,
     height:10,
-  },
-  textNav:{
-    color:'#ffe81f',
   }
 });

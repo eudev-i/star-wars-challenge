@@ -68,14 +68,14 @@ export default class Character extends Component {
           
           <View style={styles.navItems}>
             <Icon name = "ios-person"  size={20} color={'#ffe81f'}/>
-            <Text style={styles.textNav}>Character</Text>
+            <Text style={{color:'#ffe81f'}}>Character</Text>
           </View>
           
 
           <TouchableOpacity onPress={this.films}>
             <View style={styles.navItems}>
-              <Icon name="ios-videocam" size={20} color={'#ffe81f'}/>
-              <Text style={styles.textNav}>Movies</Text>
+              <Icon name="ios-videocam" size={20} color={'#e5e5e5'}/>
+              <Text style={{color:'#e5e5e5'}}>Movies</Text>
             </View>
           </TouchableOpacity>
         </View>
@@ -124,8 +124,8 @@ const styles = StyleSheet.create({
       height:200,
       marginRight:20,
       borderRadius:6,
-      
-      backgroundColor:'#000'
+      backgroundColor:'#000',
+      marginTop:20
   },
   imgCharacterItems:{
     width:150,
@@ -141,7 +141,9 @@ const styles = StyleSheet.create({
   nav:{
     width:360,
     height:60,
-    flexDirection: 'row'
+    flexDirection: 'row',
+    borderTopColor: '#ffe81f',
+    borderTopWidth: 0.34,
   },
   navItems:{
     width:180,
