@@ -5,10 +5,26 @@
 */
 
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View,Image,TouchableOpacity} from 'react-native';
+import {Platform, StyleSheet, Text, View,Image,TouchableOpacity, FlatList} from 'react-native';
 import Icon from "react-native-vector-icons/Ionicons";
+import axios from "axios";
 
 export default class Films extends Component {
+
+  constructor(){
+    super();
+        this.state = {
+          peoples:[]
+          
+        }
+  }
+
+  componentWillMount(){
+    axios.get('https://swapi.co/api/films')
+    .then((res =>{
+      this.setState({peoples: res.data.results})
+    }))  
+  }
 
   filmsDetails = () => {
     this.props.navigation.navigate('FilmsDetails');
@@ -17,8 +33,6 @@ export default class Films extends Component {
   character = () => {
     this.props.navigation.navigate('Character');
   }
-
-  
 
   render() {
     return (
@@ -30,21 +44,21 @@ export default class Films extends Component {
         <View style={styles.content}>
             <Text style={styles.titleContent}>Filmes</Text>
 
-            <View style={styles.films}>
-                <View style={styles.filmsItems}>
-                  <TouchableOpacity onPress={this.filmsDetails}>
-                    <Image source={require('../img/testeFilme.jpeg')}
-                    style={styles.imgFilmsItems}/>
-                  </TouchableOpacity>
-                  <Text style={styles.titleFilms}>The Plantom Menace</Text>
-                </View>
+            <FlatList data={this.state.peoples}
+                      keyExtractor={item=>item.title}
+                      numColumns={2}
+                      renderItem={({item})=> (
 
-                <View style={styles.filmsItems}>
-                  <Image source={require('../img/testeFilme.jpeg')}
-                  style={styles.imgFilmsItems}/>
-                  <Text style={styles.titleFilms}>The Plantom Menace</Text>
-                </View>
-            </View>
+                        <View style={styles.filmsItems}>
+                           <TouchableOpacity onPress={this.filmsDetails}>
+                             <Image source={require('../img/testeFilme.jpeg')}
+                             style={styles.imgFilmsItems}/>
+                           </TouchableOpacity>
+                           <Text style={styles.titleFilms}>{item.title}</Text>
+                          </View>
+                      )}
+                      
+            />          
 
         </View>
 
@@ -91,7 +105,7 @@ const styles = StyleSheet.create({
       width:360,
       height:545,
       backgroundColor:'#000',
-      padding: 20
+      padding: 20,
   },
   titleContent:{
       color:'#fff',
@@ -101,6 +115,7 @@ const styles = StyleSheet.create({
     width:320,
     height:490,
     marginTop:10,
+    backgroundColor:'pink',
     flexDirection: 'row'
   },
   filmsItems:{
@@ -108,7 +123,8 @@ const styles = StyleSheet.create({
       height:290,
       marginRight:20,
       borderRadius:6,
-      backgroundColor:'#fff'
+      backgroundColor:'#fff',
+      marginTop:20,
   },
   imgFilmsItems:{
     width:150,
