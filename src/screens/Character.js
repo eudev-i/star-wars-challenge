@@ -5,11 +5,26 @@
 */
 
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View,Image,TouchableOpacity} from 'react-native';
+import {Platform, StyleSheet, Text, View,Image,TouchableOpacity, FlatList} from 'react-native';
 import Icon from "react-native-vector-icons/Ionicons";
+import axios from "axios";
 
 
 export default class Character extends Component {
+
+  constructor(){
+    super();
+      this.state = {
+        character:[]
+      }
+  }
+
+  componentWillMount(){
+    axios.get('https://swapi.co/api/people')
+    .then((res =>{
+      this.setState({character: res.data.results})
+    }))
+  }
 
   films = () => {
     this.props.navigation.navigate('Films');
@@ -30,21 +45,21 @@ export default class Character extends Component {
         <View style={styles.content}>
             <Text style={styles.titleContent}>Personagens</Text>
 
-            <View style={styles.character}>
+            <FlatList data={this.state.character}
+                      keyExtractor={item=>item.id}
+                      numColumns={2}
+                      renderItem={({item}) => (
+            
                 <View style={styles.characterItems}>
                   <TouchableOpacity onPress={this.characterDetails}>
                     <Image source={require('../img/fotoPersonagem.jpeg')}
                     style={styles.imgCharacterItems}/>
                   </TouchableOpacity>
-                  <Text style={styles.titleCharacter}>Luke skywalker</Text>
+                  <Text style={styles.titleCharacter}>{item.name}</Text>
                 </View>
 
-                <View style={styles.filmsItems}>
-                  <Image source={require('../img/fotoPersonagem.jpeg')}
-                  style={styles.imgCharacterItems}/>
-                  <Text style={styles.titleCharacter}>Luke skywalker</Text>
-                </View>
-            </View>
+              )}
+            />
 
         </View>
 

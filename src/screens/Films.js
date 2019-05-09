@@ -15,7 +15,6 @@ export default class Films extends Component {
     super();
         this.state = {
           peoples:[]
-          
         }
   }
 
@@ -26,7 +25,7 @@ export default class Films extends Component {
     }))  
   }
 
-  filmsDetails = () => {
+  filmsDetails = (item) => {
     this.props.navigation.navigate('FilmsDetails');
   }
 
@@ -45,12 +44,12 @@ export default class Films extends Component {
             <Text style={styles.titleContent}>Filmes</Text>
 
             <FlatList data={this.state.peoples}
-                      keyExtractor={item=>item.title}
+                      keyExtractor={item=>item.id}
                       numColumns={2}
                       renderItem={({item})=> (
 
                         <View style={styles.filmsItems}>
-                           <TouchableOpacity onPress={this.filmsDetails}>
+                           <TouchableOpacity onPress={() => this.filmsDetails(item)}>
                              <Image source={require('../img/testeFilme.jpeg')}
                              style={styles.imgFilmsItems}/>
                            </TouchableOpacity>
