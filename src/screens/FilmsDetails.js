@@ -5,11 +5,44 @@
 */
 
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View,Image,TouchableOpacity} from 'react-native';
+import {Platform, StyleSheet, Text, View,Image,TouchableOpacity, FlatList} from 'react-native';
 import Icon from "react-native-vector-icons/Ionicons";
+import axios from "axios";
 
 export default class FilmsDetails extends Component {
 
+  constructor(){
+    super();
+        this.state = {
+          filmsDetails:{}
+        }
+  }
+
+  componentWillMount(){
+    this.fetcFilm(); 
+  }
+
+  fetcFilm(){
+
+  
+    return axios.get('https://swapi.co/api/films/1/')
+    .then(({data}) => {
+      console.log('Aqui 22', data);
+
+      const {episode_id, title, director, producer, release_date, opening_crawl} = data;
+      const film = {
+        id: String(episode_id),
+        title,
+        director,
+        producer,
+        release_date,
+        opening_crawl
+      }
+      this.setState({filmsDetails: data})
+
+      return film;
+    })
+  }
 
   films = () => {
     this.props.navigation.navigate('Films');
@@ -18,46 +51,49 @@ export default class FilmsDetails extends Component {
   render() {
     return (
       <View style={styles.container}>  
+
         <View style={styles.header}>
-            <TouchableOpacity onPress={this.films}>
-                <Icon name="ios-arrow-round-back" size={35} color={'white'} style={styles.espaco}/>
-            </TouchableOpacity>
-            <Text style={styles.textHeader}>The Pantom Menace</Text>
+          <TouchableOpacity onPress={onPress=this.films}>
+            <Icon name="ios-arrow-round-back" size={35} color={'white'} style={styles.espaco}/>
+          </TouchableOpacity>
+          <Text style={styles.textHeader}>{this.state.filmsDetails.title}</Text>
         </View>
 
         <View style={styles.content}>
 
-            <View style={styles.infoFilms}>
-                <Image source={require('../img/testeFilme.jpeg')}
+          <View style={styles.infoFilms}>
+            <Image source={require('../img/testeFilme.jpeg')}
                     style={styles.imgFilmsItems}/>
-                <View style={styles.infoFilmsDetails}>
-                    <Text style={styles.infoTitle}>Director</Text>
-                    <Text style={styles.infoText}>George Lucas</Text>
-                    <Text style={styles.infoTitle}>Producer</Text>
-                    <Text style={styles.infoText}>Rick McCallum</Text>
-                    <Text style={styles.infoTitle}>Release Date</Text>
-                    <Text style={styles.infoText}>19-05-1999</Text>
-                </View>
+
+            <View style={styles.infoFilmsDetails}>
+              <Text style={styles.infoTitle}>Director</Text>
+              <Text style={styles.infoText}>{this.state.filmsDetails.director}</Text>
+              <Text style={styles.infoTitle}>Producer</Text>
+              <Text style={styles.infoText}>{this.state.filmsDetails.producer}</Text>
+              <Text style={styles.infoTitle}>Release Date</Text>
+              <Text style={styles.infoText}>{this.state.filmsDetails.release_date}</Text>
             </View>
-            
-            <View style={styles.filmsDescription}>
-                <Text style={styles.infoFilmsDetailText}>
-                    Lorem ipsum class justo sociosqu sapien turpis 
-                    lorem donec ipsum curabitur, nisi libero risus facilisis urna 
-                    himenaeos aliquam integer eu at, vehicula neque bibendum augue
-                     velit id sociosqu egestas volutpat. dapibus adipiscing lorem donec 
-                     convallis turpis hendrerit sed velit, pretium duis habitasse luctus 
-                     habitasse accumsan lacinia vitae, consequat rhoncus duis rhoncus 
-                     pulvinar quam himenaeos. velit torquent senectus integer justo 
-                     pretium tincidunt conubia duis lorem rutrum habitant luctus felis 
-                     proin, consequat litora fringilla metus leo pretium et habitasse 
-                     elementum orci nam nostra iaculis. congue curabitur pulvinar ligula 
-                     ante nam tempor cras pharetra, lacinia tristique suspendisse augue 
-                     in tempor consequat sociosqu, luctus lobortis sapien curae mi 
-                     lobortis nec. 
-                </Text>
-            </View>
+          </View>
+
+          <View style={styles.filmsDescription}>
+            <Text style={styles.infoFilmsDetailText}>{this.state.filmsDetails.opening_crawl}</Text>
+          </View>
         </View>
+        {/* <FlatList data={this.state.filmsDetails}
+                      keyExtractor={item=>item.id}
+                      renderItem={({item})=> (
+                        
+                        <View style={styles.header}>
+                          <TouchableOpacity onPress={onPress=this.films}>
+                              <Icon name="ios-arrow-round-back" size={35} color={'white'} style={styles.espaco}/>
+                          </TouchableOpacity>
+                          <Text style={styles.textHeader}>{item.title}</Text>
+                        </View>
+                      )}
+                      
+            />           */}
+
+                        
 
       </View>
     );

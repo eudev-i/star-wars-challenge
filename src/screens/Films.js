@@ -14,20 +14,38 @@ export default class Films extends Component {
   constructor(){
     super();
         this.state = {
-          peoples:[]
+          films:[]
         }
   }
 
   componentWillMount(){
+    console.log('Aqui');
     axios.get('https://swapi.co/api/films')
-    .then((res =>{
-      this.setState({peoples: res.data.results})
-    }))  
+    .then(res =>{
+      console.log('res', res);
+      this.setState({films: res.data.results})
+      // const id = res.data.results[0].planets[0]
+      // console.log('oii', id);
+     
+      // const id = res.data.results(/\d+/g)[0]
+      // console.log(id)
+
+      // var ultimo = partes.slice(-1);
+      // console.log('oii', ultimo);
+    }).catch(error => console.log('error --->', error))
   }
+  
 
   filmsDetails = (item) => {
     this.props.navigation.navigate('FilmsDetails');
   }
+
+  // filmsDetails = (item) => {
+  //   const urlId = item.url(/\d+/g)[0]
+  //   this.props.navigation.navigate('FilmsDetails', {
+  //     id_film: urlId
+  //   });
+  // }
 
   character = () => {
     this.props.navigation.navigate('Character');
@@ -43,7 +61,7 @@ export default class Films extends Component {
         <View style={styles.content}>
             <Text style={styles.titleContent}>Filmes</Text>
 
-            <FlatList data={this.state.peoples}
+            <FlatList data={this.state.films}
                       keyExtractor={item=>item.id}
                       numColumns={2}
                       renderItem={({item})=> (

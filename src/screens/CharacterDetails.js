@@ -7,9 +7,39 @@
 import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View,Image,TouchableOpacity} from 'react-native';
 import Icon from "react-native-vector-icons/Ionicons";
+import axios from "axios";
+
 
 export default class CharacterDetails extends Component {
 
+  constructor(){
+    super();
+        this.state = {
+          characterDetails:{}
+        }
+  }
+
+  componentWillMount(){
+    this.fetcCharacter(); 
+  }
+
+  fetcCharacter(){
+
+  
+    return axios.get('https://swapi.co/api/people/1/')
+    .then(({data}) => {
+
+      const {name, birth_year, gender} = data;
+      const character = {
+        name,
+        birth_year,
+        gender
+      }
+      this.setState({characterDetails: data})
+
+      return character;
+    })
+  }
 
   character = () => {
     this.props.navigation.navigate('Character');
@@ -22,7 +52,7 @@ export default class CharacterDetails extends Component {
             <TouchableOpacity onPress={this.character}>
               <Icon name="ios-arrow-round-back" size={35} color={'white'} style={styles.espaco}/>
             </TouchableOpacity>
-            <Text style={styles.textHeader}>Luke skywalker</Text>
+            <Text style={styles.textHeader}>{this.state.characterDetails.name}</Text>
         </View>
         
         <View style={styles.areaImgCharacter}>
@@ -34,13 +64,13 @@ export default class CharacterDetails extends Component {
         <View style={styles.content}>
             <View style={styles.textEsquerda}>
                 <Text style={styles.infoTitle}>Birth Year</Text>
-                <Text style={styles.infoText}>19BBY</Text>
+                <Text style={styles.infoText}>{this.state.characterDetails.birth_year}</Text>
                 <Text style={styles.infoTitle}>Specy </Text>
                 <Text style={styles.infoText}>Human</Text>
             </View>
             <View style={styles.textDireita}>
                 <Text style={styles.infoTitle}>Gender</Text>
-                <Text style={styles.infoText}>Male</Text>
+                <Text style={styles.infoText}>{this.state.characterDetails.gender}</Text>
                 <Text style={styles.infoTitle}>Homeworld</Text>
                 <Text style={styles.infoText}>Tatooine</Text>
             </View>
