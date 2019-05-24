@@ -83,7 +83,7 @@ export default class CharacterDetails extends Component {
             </View>
 
             <View style={styles.nameFimls}>
-                <Text style={styles.textNameFimls}>The Empire Strikes Back</Text>
+                <Text style={styles.textNameFimls}>{this.state.characterDetails.films}</Text>
             </View>
             <View style={styles.nameFimls}>
                 <Text style={styles.textNameFimls}>The Empire Strikes Back</Text>

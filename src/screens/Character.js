@@ -33,6 +33,8 @@ export default class Character extends Component {
   characterDetails = () => {
     this.props.navigation.navigate('CharacterDetails');
   }
+
+
   
 
   render() {

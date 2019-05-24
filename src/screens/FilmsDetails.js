@@ -62,7 +62,7 @@ export default class FilmsDetails extends Component {
         <View style={styles.content}>
 
           <View style={styles.infoFilms}>
-            <Image source={require('../img/testeFilme.jpeg')}
+            <Image source={require('../img/sith.jpg')}
                     style={styles.imgFilmsItems}/>
 
             <View style={styles.infoFilmsDetails}>

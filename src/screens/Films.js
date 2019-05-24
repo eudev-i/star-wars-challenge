@@ -8,6 +8,8 @@ import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View,Image,TouchableOpacity, FlatList} from 'react-native';
 import Icon from "react-native-vector-icons/Ionicons";
 import axios from "axios";
+import { imgFilms } from "../aux";
+
 
 export default class Films extends Component {
 
@@ -68,8 +70,8 @@ export default class Films extends Component {
 
                         <View style={styles.filmsItems}>
                            <TouchableOpacity onPress={() => this.filmsDetails(item)}>
-                             <Image source={require('../img/testeFilme.jpeg')}
-                             style={styles.imgFilmsItems}/>
+                              <Image source = {imgFilms(item.title)}
+                                style={styles.imgFilmsItems} />
                            </TouchableOpacity>
                            <Text style={styles.titleFilms}>{item.title}</Text>
                           </View>
