@@ -56,7 +56,7 @@ export default class CharacterDetails extends Component {
         </View>
         
         <View style={styles.areaImgCharacter}>
-            <Image source={require('../img/fotoPersonagem.jpeg')}
+            <Image source={require('../img/luke.jpeg')}
                 style={styles.imgCharacter}/>
         </View>
         

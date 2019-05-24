@@ -8,6 +8,7 @@ import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View,Image,TouchableOpacity, FlatList} from 'react-native';
 import Icon from "react-native-vector-icons/Ionicons";
 import axios from "axios";
+import { imgCharacter } from "../aux";
 
 
 export default class Character extends Component {
@@ -54,8 +55,8 @@ export default class Character extends Component {
             
                 <View style={styles.characterItems}>
                   <TouchableOpacity onPress={this.characterDetails}>
-                    <Image source={require('../img/fotoPersonagem.jpeg')}
-                    style={styles.imgCharacterItems}/>
+                    <Image source = {imgCharacter(item.name)}
+                        style={styles.imgCharacterItems} />
                   </TouchableOpacity>
                   <Text style={styles.titleCharacter}>{item.name}</Text>
                 </View>
